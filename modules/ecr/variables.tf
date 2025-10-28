@@ -43,3 +43,12 @@ variable "sg_id" {
   type = string
   
 }
+
+variable "alb_target_group_arn" {
+  type = string
+  
+}
+variable "lb_listener_arn" {
+  type = string
+  
+}

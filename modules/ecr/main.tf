@@ -60,11 +60,11 @@ resource "aws_ecs_service" "serverless_ecs_service" {
     assign_public_ip = true
   }
 
-#   load_balancer {
-#     target_group_arn = var.alb_target_group_arn
-#     container_name   = "${var.app_name}-container"
-#     container_port   = 80
-#   }
+  load_balancer {
+    target_group_arn = var.alb_target_group_arn
+    container_name   = "${var.app_name}-container"
+    container_port   = 80
+  }
 
-#   depends_on = [var.alb_listener_arn]
+  depends_on = [var.lb_listener_arn]
 }
