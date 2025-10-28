@@ -13,43 +13,6 @@ resource "aws_ecr_repository" "serverless_ecr_repo" {
   }
 }
 
-# ec2 service security group 
-
-resource "aws_security_group" "ecs_sg" {
-  name        = "ecs-sg"
-  description = "Allow inbound HTTP and all outbound traffic"
-  vpc_id      = var.vpc_id
-
-  ingress {
-    description = "Allow HTTP from anywhere"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    description = "Allow HTTPS from anywhere"
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags = {
-    Name = "ECS Security Group"
-  }
-}
-
-
-
 
 resource "aws_ecs_cluster" "ecs_cluster" {
   name = "${var.app_name}-cluster"
@@ -93,7 +56,7 @@ resource "aws_ecs_service" "serverless_ecs_service" {
 
   network_configuration {
     subnets         = var.public_subnets
-    security_groups = [aws_security_group.ecs_sg.id]
+    security_groups = [var.sg_id]
     assign_public_ip = true
   }
 

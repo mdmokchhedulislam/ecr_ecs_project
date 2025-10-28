@@ -1,6 +1,6 @@
 variable "aws_region" {
   type    = string
-  default = "ap-south-1"
+  default = "us-east-1"
 }
 
 variable "app_name" {
@@ -36,5 +36,10 @@ variable "public_subnets" {
 
 variable "vpc_id" {
     type = string
+  
+}
+
+variable "sg_id" {
+  type = string
   
 }
