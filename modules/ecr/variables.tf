@@ -44,11 +44,15 @@ variable "sg_id" {
   
 }
 
-variable "alb_target_group_arn" {
-  type = string
+# variable "alb_target_group_arn" {
+#   type = string
   
-}
-variable "lb_listener_arn" {
+# }
+# variable "lb_listener_arn" {
+#   type = string
+# }
+
+variable "execution_role_arn" {
   type = string
   
 }
